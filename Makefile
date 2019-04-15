@@ -30,7 +30,8 @@ export STAGING_DIR  = $(BUILD_TOPDIR)/tmp
 export SOURCE_DIR   = $(BUILD_TOPDIR)/u-boot
 export BIN_DIR      = $(BUILD_TOPDIR)/bin
 export SUB_MAKE_CMD = $(MAKE) --silent --no-print-directory \
-                      ARCH=mips V=1 SHELL=$(SHELL)
+                      ARCH=mips V=1 SHELL=$(SHELL) CROSS_COMPILE=mips-openwrt-linux-
+export PATH:=/home/ptpt52/Sources2/openwrt/x-wrt/staging_dir/toolchain-mips_24kc_gcc-8.3.0_musl/bin:$(PATH)
 
 # ==========================================================================
 # You can override some default configuration options below or pass them on
@@ -284,6 +285,7 @@ gl-inet_gl-ar300m-lite \
 gl-inet_gl-ar750 \
 p2w_cpe505n \
 p2w_r602n \
+xwrt_mk-v0201 \
 yuncore_ap90q \
 yuncore_cpe830 \
 yuncore_t830 \
