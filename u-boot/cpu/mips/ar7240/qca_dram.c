@@ -548,6 +548,11 @@ static inline void qca_dram_set_ddr_cfg(u32 mem_cas,
 
 	/* CAS should be (2 * MEM_CAS) or (2 * MEM_CAS) + 1/2/3 */
 	tmp = 2 * mem_cas;
+#if (SOC_TYPE & (QCA_AR933X_SOC | QCA_AR934X_SOC))
+	if(mem_type == RAM_MEMORY_TYPE_DDR2) {
+		tmp = tmp + 1;	// Use (2 * MEM_CAS) + 1 for AR933x DDR2.
+	}
+#endif
 	tmp = (tmp << QCA_DDR_CFG_CAS_3LSB_SHIFT) & QCA_DDR_CFG_CAS_3LSB_MASK;
 	if (mem_cas > 3) {
 		tmp = tmp | QCA_DDR_CFG_CAS_MSB_MASK;
@@ -645,6 +650,11 @@ static inline void qca_dram_set_ddr_cfg2(u32 mem_cas,
 
 	/* Gate open latency = 2 * MEM_CAS */
 	tmp = 2 * mem_cas;
+#if (SOC_TYPE & (QCA_AR933X_SOC | QCA_AR934X_SOC))
+	if(mem_type == RAM_MEMORY_TYPE_DDR2) {
+		tmp = tmp + 1;	// Use (2 * MEM_CAS) + 1 for AR933x DDR2.
+	}
+#endif
 	tmp = (tmp << QCA_DDR_CFG2_GATE_OPEN_LATENCY_SHIFT)
 	      & QCA_DDR_CFG2_GATE_OPEN_LATENCY_MASK;
 	reg = reg & ~QCA_DDR_CFG2_GATE_OPEN_LATENCY_MASK;
@@ -977,6 +987,11 @@ void qca_dram_init(void)
 
 	/* Enable DDR refresh and setup refresh period */
 	qca_dram_set_en_refresh();
+
+#define PMU1_ADDRESS	0x18116c40
+#define PMU2_ADDRESS	0x18116c44
+	qca_soc_reg_write(PMU1_ADDRESS, 0x633c8176);
+	qca_soc_reg_write(PMU2_ADDRESS, 0x10380000);
 
 	/*
 	 * At this point memory should be fully configured,
