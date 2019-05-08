@@ -816,9 +816,10 @@ whqx_e600gac_v2: qca953x_common
 	@$(call define_add,CONFIG_PCI,1)
 	@$(MKCONFIG) -a ap143 mips mips ap143 ar7240 ar7240
 
-xwrt_mk-v0201: ar934x_common
+xwrt_mk-v0201: ar934x_common lsdk_kernel
 	@$(call config_init,XWRT MK-V0201,mk-v0201,16,16,1,QCA_AR9344_SOC)
 	@$(call define_add,CONFIG_FOR_XWRT_MK_V0201,1)
+	@$(call define_add,CONFIG_USB,1)
 	@$(call define_add,CFG_ATHRS27_PHY,1)
 	@$(call define_add,CFG_AG7240_NMACS,2)
 	@$(MKCONFIG) -a db12x mips mips db12x ar7240 ar7240
