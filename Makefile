@@ -286,6 +286,7 @@ gl-inet_gl-ar750 \
 p2w_cpe505n \
 p2w_r602n \
 xwrt_mk-v0201 \
+xwrt_m-ap300g \
 yuncore_ap90q \
 yuncore_cpe830 \
 yuncore_t830 \
