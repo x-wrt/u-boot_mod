@@ -656,6 +656,14 @@ tp-link_tl-wdr3500_v1: ar934x_common lsdk_kernel
 	@$(call define_add,CONFIG_PCI,1)
 	@$(MKCONFIG) -a db12x mips mips db12x ar7240 ar7240
 
+bm100_hq55: ar934x_common lsdk_kernel
+	@$(call config_init,BM100 HQ55,bm100-hq55,8,16,1,QCA_AR9344_SOC)
+	@$(call define_add,CONFIG_FOR_BM100_HQ55,1)
+	@$(call define_add,CFG_ATHRS27_PHY,1)
+	@$(call define_add,CFG_AG7240_NMACS,2)
+	@$(call define_add,CONFIG_PCI,1)
+	@$(MKCONFIG) -a db12x mips mips db12x ar7240 ar7240
+
 tp-link_tl-wdr3600_v1: ar934x_common lsdk_kernel
 	@$(call config_init,TP-Link TL-WDR3600 v1,tl-wdr3600-v1,8,16,1,QCA_AR9344_SOC)
 	@$(call define_add,CONFIG_FOR_TPLINK_WDR3600_V1,1)
@@ -819,7 +827,6 @@ whqx_e600gac_v2: qca953x_common
 xwrt_mk-v0201: ar934x_common lsdk_kernel
 	@$(call config_init,XWRT MK-V0201,mk-v0201,16,16,1,QCA_AR9344_SOC)
 	@$(call define_add,CONFIG_FOR_XWRT_MK_V0201,1)
-	@$(call define_add,CONFIG_USB,1)
 	@$(call define_add,CFG_ATHRS27_PHY,1)
 	@$(call define_add,CFG_AG7240_NMACS,2)
 	@$(MKCONFIG) -a db12x mips mips db12x ar7240 ar7240
@@ -827,6 +834,7 @@ xwrt_mk-v0201: ar934x_common lsdk_kernel
 xwrt_m-ap300g: ar934x_common lsdk_kernel
 	@$(call config_init,XWRT M-AP300G,m-ap300g,16,17,1,QCA_AR9344_SOC)
 	@$(call define_add,CONFIG_FOR_XWRT_M_AP300G,1)
+	@$(call define_add,CONFIG_USB,1)
 	@$(call define_add,CFG_ATHRS27_PHY,1)
 	@$(call define_add,CFG_AG7240_NMACS,2)
 	@$(call define_add,CFG_DUAL_PHY_SUPPORT,1)

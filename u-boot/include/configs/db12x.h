@@ -70,6 +70,12 @@
 	#define CONFIG_QCA_GPIO_MASK_IN		GPIO17
 	#define CONFIG_QCA_GPIO_MASK_OUT_INIT_H	GPIO12
 
+#elif defined(CONFIG_FOR_BM100_HQ55)
+
+	#define CONFIG_QCA_GPIO_MASK_LED_ACT_L	GPIO11 | GPIO13 | GPIO18 | GPIO19 | GPIO20 | GPIO21 | GPIO22
+	#define CONFIG_QCA_GPIO_MASK_IN		GPIO17
+	#define CONFIG_QCA_GPIO_MASK_OUT_INIT_H	GPIO12
+
 #elif defined(CONFIG_FOR_TPLINK_WDR3600_V1) ||\
       defined(CONFIG_FOR_TPLINK_WDR43X0_V1)
 
@@ -122,6 +128,12 @@
 				"rootfstype=squashfs init=/sbin/init "\
 				"mtdparts=ath-nor0:256k(u-boot),64k(u-boot-env),16000k(firmware),64k(art)ro"
 
+#elif defined(CONFIG_FOR_BM100_HQ55)
+
+	#define CONFIG_BOOTARGS	"console=ttyATH0,115200 root=31:02 "\
+				"rootfstype=squashfs init=/sbin/init "\
+				"mtdparts=ath-nor0:256k(u-boot),64k(u-boot-env),16000k(firmware),64k(art)ro"
+
 #elif defined(CONFIG_FOR_TPLINK_WDR3500_V1) ||\
       defined(CONFIG_FOR_TPLINK_WDR3600_V1) ||\
       defined(CONFIG_FOR_TPLINK_WDR43X0_V1)
@@ -160,7 +172,8 @@
 
 #elif defined(CONFIG_FOR_GLINET_GL_AR300) ||\
       defined(CONFIG_FOR_XWRT_MK_V0201) ||\
-      defined(CONFIG_FOR_XWRT_M_AP300G)
+      defined(CONFIG_FOR_XWRT_M_AP300G) ||\
+	  defined(CONFIG_FOR_BM100_HQ55)
 
 	#define CFG_LOAD_ADDR		0x9F050000
 
@@ -194,7 +207,8 @@
 
 #elif defined(CONFIG_FOR_GLINET_GL_AR300) ||\
       defined(CONFIG_FOR_XWRT_MK_V0201) ||\
-      defined(CONFIG_FOR_XWRT_M_AP300G)
+      defined(CONFIG_FOR_XWRT_M_AP300G) ||\
+	  defined(CONFIG_FOR_BM100_HQ55)
 
 	#define CFG_ENV_ADDR		0x9F040000
 	#define CFG_ENV_SIZE		0xFC00
@@ -305,7 +319,8 @@
 
 #elif defined(CONFIG_FOR_GLINET_GL_AR300) ||\
       defined(CONFIG_FOR_XWRT_MK_V0201) ||\
-      defined(CONFIG_FOR_XWRT_M_AP300G)
+      defined(CONFIG_FOR_XWRT_M_AP300G) ||\
+	  defined(CONFIG_FOR_BM100_HQ55)
 
 	#define WEBFAILSAFE_UPLOAD_LIMITED_AREA_IN_BYTES	(384 * 1024)
 
@@ -333,7 +348,8 @@
 
 #elif defined(CONFIG_FOR_GLINET_GL_AR300) ||\
       defined(CONFIG_FOR_XWRT_MK_V0201) ||\
-      defined(CONFIG_FOR_XWRT_M_AP300G)
+      defined(CONFIG_FOR_XWRT_M_AP300G) ||\
+	  defined(CONFIG_FOR_BM100_HQ55)
 
 	#define CONFIG_QCA_PLL_IN_FLASH_BLOCK_OFFSET	0x40000
 	#define CONFIG_QCA_PLL_IN_FLASH_BLOCK_SIZE	0x10000
@@ -363,6 +379,7 @@
     !defined(CONFIG_FOR_GLINET_GL_AR300)    &&\
     !defined(CONFIG_FOR_XWRT_MK_V0201)      &&\
     !defined(CONFIG_FOR_XWRT_M_AP300G)      &&\
+    !defined(CONFIG_FOR_BM100_HQ55)      &&\
     !defined(CONFIG_FOR_YUNCORE_CPE870)
 
 	#define CONFIG_UPG_UBOOT_SIZE_BACKUP_HEX	0x20000
